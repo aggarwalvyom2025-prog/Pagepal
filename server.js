@@ -33,9 +33,8 @@ function requireStudent(req, res, next) {
   if (!student) return res.status(401).json({ error: 'Please register first.' });
   req.student = student;
   next();
-}
-
-app.use(express.static('Public'));
+}app.use(express.static(path.join(__dirname, 'public')));
+app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
 
 // Register a student
 app.post('/register', express.json(), (req, res) => {
